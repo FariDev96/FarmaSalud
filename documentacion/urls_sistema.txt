@@ -1,0 +1,11 @@
+Rutas del sistema - Proyecto FARMASALUD
+
+Desarrollado por: Farid Sánchez
+Fecha: 23/07/2025
+
+URL local (XAMPP o similar):
+http://localhost/FARMASALUD_GUIA8/modulos/login.php
+
+Repositorio en GitHub:
+https://github.com/FariDev96/FarmaSalud
+
