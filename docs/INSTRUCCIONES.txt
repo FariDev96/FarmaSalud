@@ -1,0 +1,55 @@
+FarmaSalud - Patch 2025-08-16
+==============================
+
+Estructura a copiar en tu proyecto:
+- includes/csrf.php
+- includes/layout.php
+- public/css/fs.css
+- export/export_inventario.php
+- export/export_ventas.php
+
+1) Copia estas carpetas y archivos al ROOT de tu proyecto (donde está 'modulos/').
+   Si no existen las carpetas, créalas: 'includes/', 'public/css/', 'export/'.
+
+2) LOGIN: abre modulos/login.php y añade:
+   -------------------------------------------------
+   <?php require_once __DIR__.'/../includes/csrf.php'; ?>
+   ...
+   <form method="post">
+     <?= csrf_field() ?>
+     <!-- tus campos -->
+   </form>
+   -------------------------------------------------
+   Al procesar POST (cuando usuario/clave son correctos), ejecuta:
+     if (session_status() !== PHP_SESSION_ACTIVE) { session_start(); }
+     session_regenerate_id(true);
+
+3) Formularios POST sensibles (agregar/editar/eliminar/estado):
+   - Al inicio del archivo:
+       require_once __DIR__.'/../includes/csrf.php';
+       if ($_SERVER['REQUEST_METHOD'] === 'POST') { csrf_validate(); }
+   - Dentro del <form> agrega: <?= csrf_field() ?>
+
+4) Botones CSV:
+   - Inventario (donde listes productos):
+       <a href="/export/export_inventario.php" class="btn btn-fs-ghost">
+         <i class="bi bi-download"></i> Exportar CSV
+       </a>
+   - Ventas (en ver_ventas.php):
+       <form method="get" action="/export/export_ventas.php" class="d-flex gap-2">
+         <input type="date" name="desde" class="form-control">
+         <input type="date" name="hasta" class="form-control">
+         <button class="btn btn-fs-ghost"><i class="bi bi-download"></i> Exportar CSV</button>
+       </form>
+
+5) Estilos FS: asegúrate de linkear /public/css/fs.css en tus plantillas.
+   Si usas includes/layout.php, ya queda enlazado.
+
+6) (Opcional) Para páginas completas, rodea el contenido con:
+   <?php require_once __DIR__.'/../includes/layout.php'; fs_header('Título'); ?>
+   ... tu HTML/PHP ...
+   <?php fs_footer(); ?>
+
+Notas:
+- No rompe si faltan tablas: los export generan CSV vacío si no hay datos.
+- Conserva la paleta y botones de la guía.

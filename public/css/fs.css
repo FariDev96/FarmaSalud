@@ -1,0 +1,36 @@
+:root{
+  --fs-bg:#f6f9fc; --fs-surface:#fff; --fs-border:#e8edf3;
+  --fs-text:#0f172a; --fs-dim:#64748b;
+  --fs-primary:#2563eb; --fs-primary-600:#1d4ed8; --fs-accent:#10b981;
+}
+*{ font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
+body{ color:var(--fs-text); }
+.card{ border-color: var(--fs-border) !important; }
+.table thead th{ background:#f8fafc; }
+.table tbody tr:hover{ background:#f9fbff; }
+
+.btn-fs-primary{
+  --bs-btn-bg: var(--fs-primary);
+  --bs-btn-border-color: var(--fs-primary);
+  --bs-btn-hover-bg: var(--fs-primary-600);
+  --bs-btn-hover-border-color: var(--fs-primary-600);
+  --bs-btn-color: #fff;
+}
+.btn-fs-ghost{
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: var(--fs-border);
+  --bs-btn-color: var(--fs-text);
+  --bs-btn-hover-bg:#f3f6fb;
+  --bs-btn-hover-border-color:#d8e0ea;
+}
+.tile{
+  border:1px solid var(--fs-border); border-radius:1rem; background:var(--fs-surface);
+  transition: .2s ease; position:relative; overflow:hidden;
+}
+.tile:hover{ transform: translateY(-2px); box-shadow: 0 8px 24px rgba(15,23,42,.08); }
+.tile::after{
+  content:""; position:absolute; inset:0; background:#0f172a0f; opacity:0; transition:.2s;
+}
+.tile:hover::after{ opacity:.35; }
+
+.chart-wrap{ height: clamp(220px, 36vh, 320px); }
