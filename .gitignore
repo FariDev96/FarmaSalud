@@ -17,3 +17,7 @@ uploads/*
 *.rar
 *.7z
 PARCHE_AUTOMATICO.md
+config/db.php
+/uploads/
+/public/uploads/
+/.vscode/
